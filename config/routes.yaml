@@ -1,3 +1,19 @@
 #index:
 #    path: /
 #    controller: App\Controller\DefaultController::index
+
+
+add_todo:
+  path: /todo
+  methods: [POST]
+  controller: App\Presentation\Rest\TodoController::add
+
+remove_todo:
+  path: /todo/{id}
+  methods: [DELETE]
+  controller: App\Presentation\Rest\TodoController::remove
+
+todos:
+  path: /todos
+  methods: [GET]
+  controller: App\Presentation\Rest\TodoController::getAll

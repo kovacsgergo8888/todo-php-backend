@@ -1,0 +1,16 @@
+POST http://localhost:8000/todo
+Content-Type: application/json
+
+{
+  "todo": "some todo",
+  "dueDate": "2023-05-02",
+  "location": "Hungary"
+}
+
+###
+
+GET http://localhost:8000/todos
+
+###
+
+DELETE http://localhost:8000/todo/1
