@@ -6,9 +6,7 @@
 
     <entity name="App\Domain\Todo" table="todo" repository-class="App\Infrastructure\Persistence\Doctrine\Repository\TodoRepository">
 
-        <id name="id" type="integer" column="id">
-            <generator strategy="AUTO"/>
-            <sequence-generator sequence-name="tablename_seq" initial-value="1" />
+        <id name="id" type="entity_id" column="todo_id">
         </id>
 
         <field name="todo" column="todo" type="string" nullable="false" />

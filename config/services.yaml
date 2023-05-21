@@ -14,7 +14,10 @@ services:
   App\Infrastructure\Persistence\Doctrine\Repository\:
     resource: '../src/Infrastructure/Persistence/Doctrine/Repository/'
 
+  App\Infrastructure\Persistence\Doctrine\Type\EntityIdGenerator: ~
+
   App\Domain\TodoRepositoryInterface: '@App\Infrastructure\Persistence\Doctrine\Repository\TodoRepository'
+  App\Domain\Shared\EntityIdGeneratorInterface: '@App\Infrastructure\Persistence\Doctrine\Type\EntityIdGenerator'
   App\Application\AddTodoHandler:
     tags:
       - name: messenger.message_handler

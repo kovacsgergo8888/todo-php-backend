@@ -5,7 +5,7 @@ namespace App\Application;
 readonly class RemoveTodoCommand
 {
 
-    public function __construct(public int $id)
+    public function __construct(public string $id)
     {
     }
 }

@@ -28,8 +28,8 @@ class TodoController extends AbstractController
             $data['dueDate'],
             $data['location']
         );
-        $this->handle($command);
-        return new JsonResponse(['message' => 'OK']);
+        $todo = $this->handle($command);
+        return new JsonResponse($todo);
     }
 
     public function getAll(): JsonResponse
@@ -39,7 +39,7 @@ class TodoController extends AbstractController
         return new JsonResponse($todos);
     }
 
-    public function remove(int $id): JsonResponse
+    public function remove(string $id): JsonResponse
     {
         $command = new RemoveTodoCommand($id);
         $this->handle($command);
