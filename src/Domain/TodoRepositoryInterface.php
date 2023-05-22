@@ -2,6 +2,8 @@
 
 namespace App\Domain;
 
+use App\Domain\Shared\EntityId;
+
 interface TodoRepositoryInterface
 {
     public function add(Todo $todo): void;
@@ -11,5 +13,5 @@ interface TodoRepositoryInterface
      */
     public function getAllTodos(): array;
 
-    public function removeTodo($id): void;
+    public function removeTodo(EntityId $id): void;
 }

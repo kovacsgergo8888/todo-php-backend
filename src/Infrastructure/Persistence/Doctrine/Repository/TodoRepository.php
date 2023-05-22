@@ -2,10 +2,11 @@
 
 namespace App\Infrastructure\Persistence\Doctrine\Repository;
 
+use App\Domain\Shared\EntityId;
 use App\Domain\Todo;
 use App\Domain\TodoRepositoryInterface;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\ORM\EntityNotFoundException;
+use App\Domain\Exception\TodoNotFoundException;
 use Doctrine\Persistence\ManagerRegistry;
 
 class TodoRepository extends ServiceEntityRepository implements TodoRepositoryInterface
@@ -28,11 +29,11 @@ class TodoRepository extends ServiceEntityRepository implements TodoRepositoryIn
         return $this->findAll();
     }
 
-    public function removeTodo($id): void
+    public function removeTodo(EntityId $id): void
     {
         $todo = $this->find($id);
         if ($todo === null) {
-            throw new EntityNotFoundException('Todo not found');
+            throw new TodoNotFoundException();
         }
         $this->_em->remove($todo);
         $this->_em->flush();
