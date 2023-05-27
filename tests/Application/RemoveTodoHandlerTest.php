@@ -24,7 +24,7 @@ class RemoveTodoHandlerTest extends TestCase
         $command = new RemoveTodoCommand(123);
         $this->todoRepository->expects($this->once())
             ->method('removeTodo')
-            ->with(123);
+            ->with('123');
 
         $this->handler->__invoke($command);
     }
