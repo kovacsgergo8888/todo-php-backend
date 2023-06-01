@@ -3,17 +3,15 @@
 namespace App\Presentation\Rest;
 
 use App\Application\AddTodoCommand;
-use App\Application\Exception\ApplicationException;
 use App\Application\GetTodosQuery;
 use App\Application\RemoveTodoCommand;
-use Doctrine\ORM\EntityNotFoundException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Messenger\Exception\HandlerFailedException;
 use Symfony\Component\Messenger\HandleTrait;
 use Symfony\Component\Messenger\MessageBusInterface;
-use Throwable;
+use Symfony\Component\Routing\Annotation\Route;
 
 class TodoController extends AbstractController
 {
@@ -24,6 +22,7 @@ class TodoController extends AbstractController
         $this->messageBus = $messageBus;
     }
 
+    #[Route(path: '/todo', name: 'add_todo', methods: ['POST'])]
     public function add(Request $request): JsonResponse
     {
         $data = json_decode($request->getContent(), true);
@@ -36,6 +35,7 @@ class TodoController extends AbstractController
         return new JsonResponse($todo);
     }
 
+    #[Route(path: '/todos', name: 'todos', methods: ['GET'])]
     public function getAll(): JsonResponse
     {
         $query = new GetTodosQuery();
@@ -43,6 +43,7 @@ class TodoController extends AbstractController
         return new JsonResponse($todos);
     }
 
+    #[Route(path: '/todo/{todoId}', name: 'remove_todo', methods: ['DELETE'])]
     public function remove(string $id): JsonResponse
     {
         $command = new RemoveTodoCommand($id);
