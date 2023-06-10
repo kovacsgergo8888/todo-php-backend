@@ -17,6 +17,9 @@ class TodoRepository extends ServiceEntityRepository implements TodoRepositoryIn
         parent::__construct($registry, Todo::class);
     }
 
+    public function getTodo(EntityId $todoId): Todo { 
+        return $this->find($todoId);
+    }
 
     public function add(Todo $todo): void
     {

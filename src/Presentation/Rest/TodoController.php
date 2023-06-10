@@ -3,6 +3,7 @@
 namespace App\Presentation\Rest;
 
 use App\Application\AddTodoCommand;
+use App\Application\GetTodoQuery;
 use App\Application\GetTodosQuery;
 use App\Application\RemoveTodoCommand;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -57,5 +58,14 @@ class TodoController extends AbstractController
             return new JsonResponse(['errors' => $errors], 500);
         }
         return new JsonResponse(['message' => 'OK']);
+    }
+
+    #[Route(path: '/todo/{todoId}', name: 'get_todo', methods: ['GET'])]
+    public function getTodo(string $todoId): JsonResponse
+    {
+        $query = new GetTodoQuery($todoId);
+        $todo = $this->handle($query);
+
+        return new JsonResponse($todo);
     }
 }

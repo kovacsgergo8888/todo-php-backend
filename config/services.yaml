@@ -30,6 +30,10 @@ services:
     tags:
       - name: messenger.message_handler
         handles: App\Application\RemoveTodoCommand
+  App\Application\GetTodoHandler:
+    tags:
+      - name: messenger.message_handler
+        handles: App\Application\GetTodoQuery
 
   App\Presentation\Rest\:
     resource: '../src/Presentation/Rest/'

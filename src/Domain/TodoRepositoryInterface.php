@@ -14,4 +14,6 @@ interface TodoRepositoryInterface
     public function getAllTodos(): array;
 
     public function removeTodo(EntityId $id): void;
+
+    public function getTodo(EntityId $todoId): Todo;
 }

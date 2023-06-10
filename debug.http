@@ -10,7 +10,13 @@ Content-Type: application/json
 ###
 
 GET http://localhost:8000/todos
+Accept: application/json
 
 ###
 
 DELETE http://localhost:8000/todo/7e7891bd-3ccb-45c7-b0ab-51e7ded01d71
+
+###
+
+GET http://localhost:8000/todo/7b6f52ca-1b97-4f9c-a80b-a145b5b5cc4b
+Accept: application/json
