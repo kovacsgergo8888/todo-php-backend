@@ -12,7 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Messenger\Exception\HandlerFailedException;
 use Symfony\Component\Messenger\HandleTrait;
 use Symfony\Component\Messenger\MessageBusInterface;
-use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Attribute\Route;
 
 class TodoController extends AbstractController
 {
@@ -53,7 +53,7 @@ class TodoController extends AbstractController
         } catch (HandlerFailedException $exception) {
             $errors = array_map(
                 fn ($currentException) => ['message' => $currentException->getMessage(), 'code' => $currentException->getCode()],
-                $exception->getNestedExceptions()
+                $exception->getWrappedExceptions()
             );
             return new JsonResponse(['errors' => $errors], 500);
         }
